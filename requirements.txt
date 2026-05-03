@@ -1,0 +1,15 @@
+# wordcode 项目依赖
+# Python >= 3.7
+
+# 核心依赖（无外部库，纯标准库）
+# - 报告生成: 标准库
+
+# DOCX 生成
+python-docx>=0.8.11
+
+# PDF 生成（通过 Word COM 接口转换 DOCX → PDF，需安装 Microsoft Word）
+docx2pdf>=0.1.0
+
+# 可选：如需直接解析 PDF/PPTX 讲义
+# pymupdf>=1.23.0     # PDF 文本提取
+# python-pptx>=0.6.21 # PPTX 文件读取
