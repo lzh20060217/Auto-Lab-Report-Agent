@@ -26,7 +26,7 @@ class SYSULabReportSkill:
     SIZE_BODY = Pt(12)            # 小四，正文
     SIZE_CAPTION = Pt(10.5)       # 五号，图注
     SIZE_TABLE = Pt(9)            # 小五，表格内文字
-    SIZE_INFO = Pt(11)          # 基础信息字号
+    SIZE_INFO = Pt(10.5)       # 五号，基础信息
 
     # === 颜色 ===
     COLOR_CAPTION = RGBColor(0x55, 0x55, 0x55)
@@ -394,10 +394,10 @@ def add_blank_line(doc, size=Pt(6)):
 def add_info_table(doc):
     """
     基础信息区 —— 3行×2列 无边框隐形表格，绝对对齐
-    第1行: 学院：...    | 专业：...（4:6列宽，单行）
-    第2行: 实验人：...  | 参加人：...
+    第1行: 学院：...    | 专业：...（55:45列宽，宽左窄右黄金比例）
+    第2行: 实验人：... | 参加人：...
     第3行: 日期：...    | (空)
-    五号宋体，确保单行不折行。"实验人/参加人"后不跟"姓名(学号)"冗余文字。
+    五号宋体，左列55%宽→中心线右移，右列自然靠右，视觉对称。
     """
     table = doc.add_table(rows=3, cols=2)
     table.autofit = True
@@ -416,15 +416,15 @@ def add_info_table(doc):
             set_cell_border(cell, **none_border)
 
     page_text_width = SKILL.PAGE_WIDTH - SKILL.MARGIN_LEFT - SKILL.MARGIN_RIGHT
-    left_col_width = page_text_width * 0.40
-    right_col_width = page_text_width * 0.60
+    left_col_width = page_text_width * 0.55
+    right_col_width = page_text_width * 0.45
     for row_obj in table.rows:
         row_obj.cells[0].width = left_col_width
         row_obj.cells[1].width = right_col_width
 
     data = [
-        ('学院：电子与信息工程学院', '       专业：电子信息科学与技术'),
-        ('实验人：__________________', '       参加人：__________________'),
+        ('学院：电子与信息工程学院', '专业：电子信息科学与技术'),
+        ('实验人：__________________', '参加人：__________________'),
         ('日期：__________________', ''),
     ]
 
